@@ -2,7 +2,7 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: deploy-nodeapp
+  name: deploy-symphonyapp
   namespace: sicreji
 
 spec:
@@ -19,22 +19,21 @@ spec:
       containers:
         - name: webapp
           image: opusidea/luminess-projet3:0.2
-          # DATABASE_URL="mysql://root:stagiaire@127.0.0.1:3396/formation?serverVersion=mariadb-13.3.36"
           env:
           - name: DATABASE_URL
-            value: mariadb-svc
+            value: "mysql://root:supersecure@mariadb-svc:3306/formation?serverVersion=mariadb:10.3.36"
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  name: nodeapp-svc
-  namespace: nodeapp
+  name: symphonyapp-svc
+  namespace: sicreji
 
 spec:
-  type: NodePort # connectivité externe sur AWS ?
+  type: LoadBalancer # connectivité externe sur AWS ?
   selector:
     app: symph
   ports:
-  - port: TODO
-    targetPort: TODO
-    nodePort: 31600
+  - protocol: TCP
+    port: 80
+    targetPort: 80

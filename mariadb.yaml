@@ -10,13 +10,13 @@ metadata:
 spec:
   containers:
     - name: mariadb
-      image: mariadb:10.9
+      image: mariadb:10.3.36
       env:
-      - name: MARIADB_ROOT_PASSWORD
+      - name: MYSQL_ROOT_PASSWORD
         value: supersecure
-      - name: MARIADB_USER
+      - name: MYSQL_USER
         value: toto
-      - name: MARIADB_PASSWORD
+      - name: MYSQL_PASSWORD
         value: titi
 
 ---
@@ -32,4 +32,4 @@ spec:
     app: mariadb
   ports:
   - port: 3306
-    targetPort: 3336
+    targetPort: 3306
