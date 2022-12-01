@@ -32,7 +32,7 @@ metadata:
 spec:
   type: LoadBalancer # connectivité externe sur AWS ?
   selector:
-    app: symph
+    app: symp
   ports:
   - protocol: TCP
     port: 80
