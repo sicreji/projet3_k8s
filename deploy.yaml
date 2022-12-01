@@ -33,7 +33,7 @@ metadata:
 spec:
   type: NodePort # connectivité externe sur AWS ?
   selector:
-    app: node
+    app: symph
   ports:
   - port: TODO
     targetPort: TODO
