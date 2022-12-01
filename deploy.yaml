@@ -1,0 +1,40 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: deploy-nodeapp
+  namespace: sicreji
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: symph
+  # pod template
+  template:
+    metadata:
+      labels:
+        app: symp
+    spec:
+      containers:
+        - name: webapp
+          image: opusidea/luminess-projet3:0.2
+          # DATABASE_URL="mysql://root:stagiaire@127.0.0.1:3396/formation?serverVersion=mariadb-13.3.36"
+          env:
+          - name: DATABASE_URL
+            value: mariadb-svc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nodeapp-svc
+  namespace: nodeapp
+
+spec:
+  type: NodePort # connectivité externe sur AWS ?
+  selector:
+    app: node
+  ports:
+  - port: TODO
+    targetPort: TODO
+    nodePort: 31600

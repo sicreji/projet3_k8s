@@ -1,0 +1,35 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mariadb
+  labels:
+    app: mariadb
+  namespace: sicreji
+
+spec:
+  containers:
+    - name: mariadb
+      image: mariadb:10.9
+      env:
+      - name: MARIADB_ROOT_PASSWORD
+        value: supersecure
+      - name: MARIADB_USER
+        value: toto
+      - name: MARIADB_PASSWORD
+        value: titi
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mariadb-svc
+  namespace: sicreji
+
+spec:
+  type: ClusterIP # connectivité interne
+  selector:
+    app: mariadb
+  ports:
+  - port: 3306
+    targetPort: 3336
