@@ -9,7 +9,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: symph
+      app: symp
   # pod template
   template:
     metadata:
@@ -21,7 +21,7 @@ spec:
           image: opusidea/luminess-projet3:0.2
           env:
           - name: DATABASE_URL
-            value: "mysql://root:supersecure@mariadb-svc:3306/formation?serverVersion=mariadb:10.3.36"
+            value: "mysql://root:supersecure@mariadb-svc:3306/formation?serverVersion=mariadb-10.3.36"
 ---
 kind: Service
 apiVersion: v1
